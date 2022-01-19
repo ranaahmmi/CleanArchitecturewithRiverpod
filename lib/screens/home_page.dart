@@ -12,7 +12,6 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.read(quizNotifierProvider.notifier).getQuiz();
     final quizState = ref.watch(quizNotifierProvider);
     return Scaffold(
       appBar: AppBar(
@@ -22,6 +21,7 @@ class MyHomePage extends ConsumerWidget {
       body: Center(
         child: quizState is QuizLoadedState
             ? PageView.builder(
+                itemCount: quizState.quizList?.length ?? 0,
                 controller: _controller,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
